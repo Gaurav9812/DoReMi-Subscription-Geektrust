@@ -4,7 +4,7 @@ public class AddSubscriptionFailedException extends Exception {
     private final String errorCode;
     public AddSubscriptionFailedException(String message) {
         super(message);
-        errorCode="SUBSCRIPTIONS_NOT_FOUND";
+        errorCode="ADD_SUBSCRIPTION_FAILED";
     }
 
     public String getErrorCode() {

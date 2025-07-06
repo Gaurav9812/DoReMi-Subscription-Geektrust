@@ -1,30 +1,30 @@
 package com.example.geektrust.model;
 
 import com.example.geektrust.exception.InvalidDateException;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.Map;
 
 public class User {
 
-   public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     String subscriptionStart;
     Map<String, Subscription> subscriptions;
     TopUp topUp;
+    int topUpForMonths;
+
+    public int getTopUpForMonths() {
+        return topUpForMonths;
+    }
+
+    public void setTopUpForMonths(int topUpForMonths) {
+        this.topUpForMonths = topUpForMonths;
+    }
 
     public String getSubscriptionStart() {
         return subscriptionStart;
     }
 
     public void setSubscriptionStart(String subscriptionStart) throws InvalidDateException {
-        try {
-            LocalDate date = LocalDate.parse(subscriptionStart, formatter);
-        } catch (DateTimeParseException e) {
-            throw new InvalidDateException("");
-        }
+
         this.subscriptionStart = subscriptionStart;
     }
 
@@ -37,10 +37,28 @@ public class User {
     }
 
     public TopUp getTopUp() {
-        return topUp;
+        return null;
     }
 
     public void setTopUp(TopUp topUp) {
         this.topUp = topUp;
+    }
+
+    public void isValid() throws InvalidDateException {
+        if(this.subscriptionStart == null) throw new InvalidDateException("");
+
+    }
+
+    public Subscription getSubscription(String category, String plan) {
+        String key = this.getSubscriptionKey(category, plan);
+        return this.getSubscriptions().get(key);
+    }
+
+    private String getSubscriptionKey(String category, String plan) {
+        return category + "_" + plan;
+    }
+    public void addSubscription(String category, String plan, Subscription subscription) {
+        String key = this.getSubscriptionKey(category, plan);
+        subscriptions.put(key, subscription);
     }
 }

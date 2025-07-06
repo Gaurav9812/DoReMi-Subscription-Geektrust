@@ -17,7 +17,7 @@ public class TopUpRegistry {
     public static TopUp getPlan(String topUp) throws AddTopUpFailedException {
         String key = topUp.toUpperCase();
         if (!topUpMap.containsKey(key)) {
-            throw new AddTopUpFailedException("INVALID_TOP_UP");
+            throw new AddTopUpFailedException("INVALID_TOPUP");
         }
         return topUpMap.get(key);
     }
