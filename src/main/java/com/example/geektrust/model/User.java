@@ -1,6 +1,8 @@
 package com.example.geektrust.model;
 
 import com.example.geektrust.exception.InvalidDateException;
+
+import java.util.HashMap;
 import java.util.Map;
 
 public class User {
@@ -10,6 +12,10 @@ public class User {
     Map<String, Subscription> subscriptions;
     TopUp topUp;
     int topUpForMonths;
+
+    public User() {
+        subscriptions = new HashMap<>();
+    }
 
     public int getTopUpForMonths() {
         return topUpForMonths;
@@ -24,7 +30,6 @@ public class User {
     }
 
     public void setSubscriptionStart(String subscriptionStart) throws InvalidDateException {
-
         this.subscriptionStart = subscriptionStart;
     }
 
@@ -37,7 +42,7 @@ public class User {
     }
 
     public TopUp getTopUp() {
-        return null;
+        return topUp;
     }
 
     public void setTopUp(TopUp topUp) {
@@ -49,16 +54,26 @@ public class User {
 
     }
 
-    public Subscription getSubscription(String category, String plan) {
-        String key = this.getSubscriptionKey(category, plan);
+    public Subscription getSubscription(String category) {
+        String key = this.getSubscriptionKey(category);
         return this.getSubscriptions().get(key);
     }
 
-    private String getSubscriptionKey(String category, String plan) {
-        return category + "_" + plan;
+    private String getSubscriptionKey(String category) {
+        return category;
     }
     public void addSubscription(String category, String plan, Subscription subscription) {
-        String key = this.getSubscriptionKey(category, plan);
+        String key = this.getSubscriptionKey(category);
         subscriptions.put(key, subscription);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "subscriptionStart='" + subscriptionStart + '\'' +
+                ", subscriptions=" + subscriptions +
+                ", topUp=" + topUp +
+                ", topUpForMonths=" + topUpForMonths +
+                '}';
     }
 }
