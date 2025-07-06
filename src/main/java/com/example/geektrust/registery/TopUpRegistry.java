@@ -2,6 +2,7 @@ package com.example.geektrust.registery;
 
 import com.example.geektrust.exception.AddTopUpFailedException;
 import com.example.geektrust.model.TopUp;
+import com.example.geektrust.model.enums.SubscriptionEnum;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +18,7 @@ public class TopUpRegistry {
     public static TopUp getPlan(String topUp) throws AddTopUpFailedException {
         String key = topUp.toUpperCase();
         if (!topUpMap.containsKey(key)) {
-            throw new AddTopUpFailedException("INVALID_TOPUP");
+            throw new AddTopUpFailedException(SubscriptionEnum.INVALID_TOPUP.getMessage());
         }
         return topUpMap.get(key);
     }

@@ -2,6 +2,7 @@ package com.example.geektrust.registery;
 
 import com.example.geektrust.exception.AddSubscriptionFailedException;
 import com.example.geektrust.model.Subscription;
+import com.example.geektrust.model.enums.SubscriptionEnum;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,7 +28,7 @@ public class SubscriptionRegistry {
     public static Subscription getPlan(String category, String planName) throws AddSubscriptionFailedException {
         String key = category.toUpperCase() + "_" + planName.toUpperCase();
         if (!subscriptionMap.containsKey(key)) {
-            throw new AddSubscriptionFailedException("INVALID_CATEGORY_OR_PLAN");
+            throw new AddSubscriptionFailedException(SubscriptionEnum.INVALID_CATEGORY_OR_PLAN.getMessage());
         }
         return subscriptionMap.get(key);
     }
