@@ -1,6 +1,7 @@
 package com.example.geektrust.model;
 
 import com.example.geektrust.exception.InvalidDateException;
+import com.example.geektrust.model.enums.SubscriptionStatus;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,13 +9,16 @@ import java.util.Map;
 public class User {
 
 
+
     String subscriptionStart;
     Map<String, Subscription> subscriptions;
     TopUp topUp;
     int topUpForMonths;
+    SubscriptionStatus status;
 
     public User() {
         subscriptions = new HashMap<>();
+        status = SubscriptionStatus.NOT_STARTED;
     }
 
     public int getTopUpForMonths() {
@@ -31,6 +35,11 @@ public class User {
 
     public void setSubscriptionStart(String subscriptionStart) throws InvalidDateException {
         this.subscriptionStart = subscriptionStart;
+        this.status = SubscriptionStatus.STARTED;
+    }
+
+    public boolean isSubscriptionStarted() {
+        return this.status == SubscriptionStatus.STARTED;
     }
 
     public Map<String, Subscription> getSubscriptions() {

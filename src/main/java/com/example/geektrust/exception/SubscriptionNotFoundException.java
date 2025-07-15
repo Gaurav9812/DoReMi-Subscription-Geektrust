@@ -1,10 +1,12 @@
 package com.example.geektrust.exception;
 
+import com.example.geektrust.constants.Constants;
+
 public class SubscriptionNotFoundException extends Exception {
     private final String errorCode;
     public SubscriptionNotFoundException(String message) {
         super(message);
-        errorCode="SUBSCRIPTIONS_NOT_FOUND";
+        errorCode = Constants.SUBSCRIPTIONS_NOT_FOUND;
     }
 
     public String getErrorCode() {

@@ -1,0 +1,13 @@
+package com.example.geektrust.model.enums;
+
+public enum SubscriptionMessageType {
+    ADD_SUBSCRIPTION_FAILED,
+    DUPLICATE_CATEGORY,
+    RENEWAL_REMINDER,
+    SUBSCRIPTIONS_NOT_FOUND,
+    DUPLICATE_TOPUP,
+    RENEWAL_AMOUNT,
+    INVALID_TOPUP,
+    INVALID_CATEGORY_OR_PLAN,
+    ADD_TOPUP_FAILED
+}
